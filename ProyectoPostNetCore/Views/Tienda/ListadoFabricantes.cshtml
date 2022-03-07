@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ProyectoPostNetCore.Models.Fabricante>
+
+@{
+    ViewData["Title"] = "ListadoFabricantes";
+}
+
+<h1>ListadoFabricantes</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdFabricante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdFabricante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                <a asp-action="ListadoProductos" asp-controller="Tienda" asp-route-id="@item.IdFabricante" class="btn btn-primary">Listado Articulos</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

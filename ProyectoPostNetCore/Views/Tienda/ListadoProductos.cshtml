@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ProyectoPostNetCore.Models.Producto>
+
+@{
+    ViewData["Title"] = "ListadoProductos";
+    int idfab= int.Parse(ViewData["FABRICANTE"].ToString());
+}
+
+<h1>ListadoProductos</h1>
+
+<a asp-action="ListadoFabricantes" asp-controller="Tienda" class="btn btn-info">Volver al listado</a>
+
+<p>
+    <a asp-action="NuevoProducto" asp-controller="Tienda" asp-route-idfab="@idfab" class="btn btn-success">Nuevo Producto</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdFabricante)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdFabricante)
+            </td>
+            <td>
+                <a class="btn btn-secondary" asp-action="EditarProducto" asp-controller="Tienda" asp-route-id="@item.IdProducto">Editar</a> |
+                <a class="btn btn-danger" asp-action="EliminarProducto" asp-controller="Tienda" asp-route-id="@item.IdProducto">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
